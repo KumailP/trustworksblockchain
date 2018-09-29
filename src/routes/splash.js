@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import { Link } from "react-router-dom";
 
 export default class splash extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class splash extends Component {
   };
 
   render() {
-      const { checked } = this.state;
+    const { checked } = this.state;
     return (
       <div className="splash">
         <div className="splash-center">
@@ -50,9 +51,11 @@ export default class splash extends Component {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button variant="contained" size="large" color="primary">
-                    Login
-                  </Button>
+                  <Link to="/citizen-dashboard">
+                    <Button variant="contained" size="large" color="primary">
+                      Login
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             ) : (
