@@ -73,28 +73,11 @@ export default class splash extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button variant="contained" size="large" color="primary">
-                      Login
-                    </Button>
-                  </CardActions>
-                </Card>
-
-                <Card className="splash-card">
-                  <CardActionArea>
-                    <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="headline"
-                        component="h2"
-                      >
-                        Society Office
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button variant="contained" size="large" color="primary">
-                      Login
-                    </Button>
+                    <Link to="/DCOffice">
+                      <Button variant="contained" size="large" color="primary">
+                        Login
+                      </Button>
+                    </Link>
                   </CardActions>
                 </Card>
 
@@ -111,9 +94,11 @@ export default class splash extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button variant="contained" size="large" color="primary">
-                      Login
-                    </Button>
+                    <Link to="/registrarOffice">
+                      <Button variant="contained" size="large" color="primary">
+                        Login
+                      </Button>
+                    </Link>
                   </CardActions>
                 </Card>
 
@@ -130,9 +115,11 @@ export default class splash extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button variant="contained" size="large" color="primary">
-                      Login
-                    </Button>
+                    <Link to="/leaseOffice">
+                      <Button variant="contained" size="large" color="primary">
+                        Login
+                      </Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </React.Fragment>
