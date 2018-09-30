@@ -12,8 +12,46 @@ class Application extends React.Component {
       landSize: "",
       projectName: "",
       loading: false,
-      appStatus: "lund"
+      appStatus: {
+        color: "orange",
+        status: "In-Progress"
+      },
+      dcStatus: {
+        color: "orange",
+        status: "In-Progress"
+      },
+      registrarStatus: {
+        color: "orange",
+        status: "In-Progress"
+      },
+      leasureStatus: {
+        color: "orange",
+        status: "In-Progress"
+      }
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(
+        { dcStatus: { color: "green", status: "Approved" } },
+        () => {
+          setTimeout(() => {
+            this.setState(
+              { registrarStatus: { color: "green", status: "Approved" } },
+              () => {
+                setTimeout(() => {
+                  this.setState({
+                    leasureStatus: { color: "green", status: "Approved" },
+                    appStatus: { color: "green", status: "Ownership Transferred", submitted: true }
+                  });
+                }, 1500);
+              }
+            );
+          }, 1500);
+        }
+      );
+    }, 4500);
   }
 
   handleChange = name => event => {
@@ -25,18 +63,24 @@ class Application extends React.Component {
   submitApplication = () => {
     this.setState({ loading: true });
     setTimeout(() => {
-      this.setState({ loading: false, appStatus: "submitted" });
+      this.setState({ loading: false, appStatus: {color: "orange", status: "In-Progress", submitted: true} });
     }, 1000);
   };
 
   render() {
-    const { loading, appStatus } = this.state;
+    const {
+      loading,
+      appStatus,
+      dcStatus,
+      registrarStatus,
+      leasureStatus
+    } = this.state;
 
     return (
       <div className="citizen-dashboard-inner">
         {loading ? (
           <img src="/images/spinner.svg" alt="loading" />
-        ) : appStatus === "submitted" ? (
+        ) : appStatus.submitted ? (
           <React.Fragment>
             <Link to="/citizen-dashboard" style={{ textDecoration: "none" }}>
               <Button variant="contained">{"<- Dashboard"}</Button>
@@ -49,11 +93,26 @@ class Application extends React.Component {
               className="submitted"
             >
               <p>Application has been submitted.</p>
-              <p>Status: <strong style={{color: "red"}}>In-Progress</strong></p>
-              <ul style={{textAlign: "left"}}>
-                <li>DC Office: <span style={{color: "green"}}>Approved</span></li>
-                <li>Registrar: <span style={{color: "orange"}}>In-Progress</span></li>
-                <li>Leasure Office: <span style={{color: "orange"}}>In-Progress</span></li>
+              <p>
+                Status: <strong><span style={{ color: appStatus.color }}>{appStatus.status}</span></strong>
+              </p>
+              <ul style={{ textAlign: "left" }}>
+                <li>
+                  DC Office:{" "}
+                  <span style={{ color: dcStatus.color }}>{dcStatus.status}</span>
+                </li>
+                <li>
+                  Registrar:{" "}
+                  <span style={{ color: registrarStatus.color }}>
+                    {registrarStatus.status}
+                  </span>
+                </li>
+                <li>
+                  Leasure Office:{" "}
+                  <span style={{ color: leasureStatus.color }}>
+                    {leasureStatus.status}
+                  </span>
+                </li>
               </ul>
             </Paper>
           </React.Fragment>
